@@ -1,27 +1,18 @@
-#Creates a layer from node:alpine image.
 FROM node:16.13.2-alpine3.14
 
-#Sets an environment variable
-ENV PORT 3000
+WORKDIR /app
 
-#Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD commands
-WORKDIR /usr/src/app
+COPY package*.json ./
 
-#Copy new files or directories into the filesystem of the container
-COPY package.json .
-COPY package-lock.json .
+RUN npm i
 
-#Execute commands in a new layer on top of the current image and commit the results
-RUN npm install
-
-##Copy new files or directories into the filesystem of the container
 COPY . .
 
-#Execute commands in a new layer on top of the current image and commit the results
 RUN npm run build
 
-#Informs container runtime that the container listens on the specified network ports at runtime
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
 EXPOSE 3000
 
-#Allows you to configure a container that will run as an executable
-ENTRYPOINT ["npm", "run"]
+CMD ["npm", "run", "dev"]

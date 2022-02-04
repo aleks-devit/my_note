@@ -2,17 +2,16 @@ FROM node:16.13.2-alpine3.14
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY . ./
 
+# building the app
 RUN npm i
 
-COPY . .
-
+RUN chown -R node: /app
+USER node
 RUN npm run build
-
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+# Running the app
+CMD [ "npm", "run", "dev" ]

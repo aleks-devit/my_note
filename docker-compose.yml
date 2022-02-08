@@ -42,9 +42,6 @@ services:
       - "27017:27017"
     networks:
       - mynote-network
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
 networks:
   mynote-network:
     driver: bridge

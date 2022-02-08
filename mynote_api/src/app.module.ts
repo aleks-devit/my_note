@@ -14,7 +14,7 @@ const url = process.env.MONGO_URL || 'localhost';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(`mongodb://root:root@${url}:27017/my_note`),
+    MongooseModule.forRoot(`mongodb://db/admin`),
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       autoSchemaFile: 'schema.gql',
@@ -23,6 +23,6 @@ const url = process.env.MONGO_URL || 'localhost';
     HobbyModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PersonService, HobbyService],
+  providers: [AppService],
 })
 export class AppModule {}

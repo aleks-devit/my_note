@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Hobby {
+  _id: String!
+  name: String!
+}
+
+type Person {
+  _id: String!
+  name: String!
+  hobbies: [Hobby!]!
+}
+
+type Note {
+  _id: String!
+  title: String!
+  content: String!
+}
+
+type Folder {
+  _id: String!
+  title: String!
+  childrenFolders: [Folder!]!
+  childrenNotes: [Note!]!
+}
+
+type Query {
+  person(_id: String!): Person!
+  persons(filters: ListPersonInput): [Person!]!
+  hobby(_id: String!): Hobby!
+  hobbies(filters: ListHobbyInput): [Hobby!]!
+  folder(_id: String!): Folder!
+  folders(filters: ListFolderInput): Folder!
+  note(_id: String!): Note!
+  notes(filters: ListNoteInput): Note!
+}
+
+input ListPersonInput {
+  _id: String
+  name: String
+  hobbies: String
+}
+
+input ListHobbyInput {
+  _id: String
+  name: String
+}
+
+input ListFolderInput {
+  _id: String
+  title: String
+  childrenFolders: String
+  childrenNotes: String
+}
+
+input ListNoteInput {
+  _id: String
+  title: String
+  content: String
+}
+
+type Mutation {
+  createPerson(payload: CreatePersonInput!): Person!
+  updatePerson(payload: UpdatePersonInput!): Person!
+  deletePerson(_id: String!): Person!
+  createHobby(payload: CreateHobbyInput!): Hobby!
+  updateHobby(payload: UpdateHobbyInput!): Hobby!
+  deleteHobby(_id: String!): Hobby!
+  createFolder(payload: CreateFolderInput!): Folder!
+  updateFolder(payload: UpdateFolderInput!): Folder!
+  deleteFolder(_id: String!): Folder!
+  createNote(payload: CreateNoteInput!): Note!
+  updateNote(payload: UpdateNoteInput!): Note!
+  deleteNote(_id: String!): Note!
+}
+
+input CreatePersonInput {
+  name: String!
+  hobbies: [String!]!
+}
+
+input UpdatePersonInput {
+  _id: String!
+  name: String
+  hobbies: String
+}
+
+input CreateHobbyInput {
+  name: String!
+}
+
+input UpdateHobbyInput {
+  _id: String!
+  name: String
+}
+
+input CreateFolderInput {
+  title: String!
+}
+
+input UpdateFolderInput {
+  _id: String!
+  title: String
+  childrenFolders: String
+  childrenNotes: String
+}
+
+input CreateNoteInput {
+  title: String!
+  content: String!
+}
+
+input UpdateNoteInput {
+  _id: String!
+  title: String
+  content: String
+}

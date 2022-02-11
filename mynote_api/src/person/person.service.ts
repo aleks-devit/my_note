@@ -31,6 +31,6 @@ export class PersonService {
   }
 
   delete(_id: MongooseSchema.Types.ObjectId) {
-    return this.personModel.findByIdAndDelete(_id).exec
+    return this.personModel.findByIdAndDelete(_id).exec()
   }
 }

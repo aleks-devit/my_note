@@ -5,6 +5,9 @@ import {Schema as MongooseSchema} from 'mongoose';
 export class CreateFolderInput {
   @Field(() => String)
   title: string
+
+  @Field(() => String, {nullable: true})
+  pathname?: string
 }
 
 @InputType()
@@ -14,6 +17,9 @@ export class ListFolderInput {
 
   @Field(() => String, {nullable: true})
   title?: string
+
+  @Field(() => String, {nullable: true})
+  pathname?: string
 
   @Field(() => String, {nullable: true})
   childrenFolders?: MongooseSchema.Types.ObjectId[]
@@ -29,6 +35,9 @@ export class UpdateFolderInput {
 
   @Field(() => String, {nullable: true})
   title?: string
+
+  @Field(() => String, {nullable: true})
+  pathname?: string
 
   @Field(() => String, {nullable: true})
   childrenFolders?: MongooseSchema.Types.ObjectId[]

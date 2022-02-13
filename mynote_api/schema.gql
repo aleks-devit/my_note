@@ -2,6 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Note {
+  _id: String
+  title: String
+  folderPathname: String
+  content: String
+}
+
+type Folder {
+  _id: String!
+  title: String!
+  pathname: String!
+  parentFolderId: Folder!
+  childrenFolders: [Folder!]!
+  childrenNotes: [Note!]!
+}
+
 type Hobby {
   _id: String!
   name: String!
@@ -13,28 +29,15 @@ type Person {
   hobbies: [Hobby!]!
 }
 
-type Note {
-  _id: String!
-  title: String!
-  content: String!
-}
-
-type Folder {
-  _id: String!
-  title: String!
-  childrenFolders: [Folder!]!
-  childrenNotes: [Note!]!
-}
-
 type Query {
   person(_id: String!): Person!
   persons(filters: ListPersonInput): [Person!]!
   hobby(_id: String!): Hobby!
   hobbies(filters: ListHobbyInput): [Hobby!]!
   folder(_id: String!): Folder!
-  folders(filters: ListFolderInput): Folder!
+  folders(filters: ListFolderInput): [Folder!]!
   note(_id: String!): Note!
-  notes(filters: ListNoteInput): Note!
+  notes(filters: ListNoteInput): [Note!]!
 }
 
 input ListPersonInput {
@@ -51,6 +54,7 @@ input ListHobbyInput {
 input ListFolderInput {
   _id: String
   title: String
+  pathname: String
   childrenFolders: String
   childrenNotes: String
 }
@@ -58,6 +62,7 @@ input ListFolderInput {
 input ListNoteInput {
   _id: String
   title: String
+  folderPathname: String
   content: String
 }
 
@@ -98,11 +103,13 @@ input UpdateHobbyInput {
 
 input CreateFolderInput {
   title: String!
+  pathname: String
 }
 
 input UpdateFolderInput {
   _id: String!
   title: String
+  pathname: String
   childrenFolders: String
   childrenNotes: String
 }
@@ -110,10 +117,12 @@ input UpdateFolderInput {
 input CreateNoteInput {
   title: String!
   content: String!
+  folderPathname: String
 }
 
 input UpdateNoteInput {
   _id: String!
   title: String
+  folderPathname: String
   content: String
 }

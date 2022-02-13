@@ -15,7 +15,7 @@ export class FolderResolver {
     return this.folderService.getById(_id)
   }
 
-  @Query(() => Folder)
+  @Query(() => [Folder])
   async folders(
     @Args('filters', {nullable: true}) filters?: ListFolderInput
   ) {

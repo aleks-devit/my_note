@@ -13,6 +13,14 @@ export class Folder {
   @Prop()
   title: string
 
+  @Field(() => String)
+  @Prop()
+  pathname: string
+
+  @Field(() => Folder)
+  @Prop({type: MongooseSchema.Types.ObjectId, ref: Folder.name})
+  parentFolderId: MongooseSchema.Types.ObjectId | Folder
+
   @Field(() => [Folder])
   @Prop({type: [MongooseSchema.Types.ObjectId], ref: Folder.name})
   childrenFolders: MongooseSchema.Types.ObjectId[] | Folder[]

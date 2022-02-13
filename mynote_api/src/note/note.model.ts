@@ -5,14 +5,18 @@ import {Document, Schema as MongooseSchema} from "mongoose";
 @ObjectType()
 @Schema()
 export class Note {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   _id: MongooseSchema.Types.ObjectId
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   @Prop()
   title: string
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
+  @Prop()
+  folderPathname: string
+
+  @Field(() => String, { nullable: true })
   @Prop()
   content: string
 }

@@ -8,6 +8,7 @@ import {CreateFolderInput, ListFolderInput, UpdateFolderInput} from "./folder.in
 export class FolderService {
   constructor(@InjectModel(Folder.name) private folderModel: Model<FolderDocument>) {}
 
+
   create(payload: CreateFolderInput) {
     const createdFolder = new this.folderModel(payload)
     return createdFolder.save()

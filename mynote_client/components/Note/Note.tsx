@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {NoteWrapper, NoteTextArea, NoteMarkDown} from "./styles"
+import {NoteMarkDown, NoteTextArea, NoteWrapper} from "./styles"
+
 
 const Note = () => {
     const [input, setInput] = useState('')

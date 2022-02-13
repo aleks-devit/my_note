@@ -8,6 +8,9 @@ export class CreateNoteInput {
 
   @Field(() => String)
   content: string
+
+  @Field(() => String, {nullable: true})
+  folderPathname?: string
 }
 
 @InputType()
@@ -19,7 +22,10 @@ export class ListNoteInput {
   title?: string
 
   @Field(() => String, {nullable: true})
-  content: string
+  folderPathname?: string
+
+  @Field(() => String, {nullable: true})
+  content?: string
 }
 
 @InputType()
@@ -29,6 +35,9 @@ export class UpdateNoteInput {
 
   @Field(() => String, {nullable: true})
   title?: string
+
+  @Field(() => String, {nullable: true})
+  folderPathname?: string
 
   @Field(() => String, {nullable: true})
   content?: string

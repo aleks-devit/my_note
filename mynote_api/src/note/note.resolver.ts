@@ -9,21 +9,18 @@ export class NoteResolver {
   constructor(private noteService: NoteService) {}
 
   @Query(() => Note)
-  async note(
-    @Args('_id', {type: () => String}) _id: MongooseSchema.Types.ObjectId
-  ) {
+  async note(@Args('_id', {type: () => String}) _id: MongooseSchema.Types.ObjectId) {
     return this.noteService.getById(_id)
   }
 
-  @Query(() => Note)
-  async notes (
-    @Args('filters', {nullable: true}) filters?: ListNoteInput
-  ) {
+  @Query(() => [Note])
+  async notes (@Args('filters', {nullable: true}) filters?: ListNoteInput) {
     return this.noteService.list(filters)
   }
 
   @Mutation(() => Note)
   async createNote(@Args('payload') payload: CreateNoteInput) {
+    console.log(payload)
     return this.noteService.create(payload)
   }
 

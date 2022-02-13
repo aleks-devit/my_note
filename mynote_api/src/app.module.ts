@@ -8,23 +8,25 @@ import { HobbyModule } from './hobby/hobby.module';
 import {PersonModule} from "./person/person.module";
 import { FolderModule } from './folder/folder.module';
 import { NoteModule } from './note/note.module';
+import {Folder, FolderSchema} from "./folder/folder.model";
 
 const url = process.env.MONGO_URL || 'localhost';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(`mongodb://db/test_db`),
+    MongooseModule.forRoot(`mongodb+srv://admin:admin@cluster0.kyuxl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`),
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       autoSchemaFile: 'schema.gql',
     }),
+    MongooseModule.forFeature([{name: Folder.name, schema: FolderSchema}]),
     PersonModule,
     HobbyModule,
     FolderModule,
     NoteModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [ AppService],
 })
 export class AppModule {}

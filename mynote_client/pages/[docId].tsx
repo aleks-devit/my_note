@@ -6,4 +6,3 @@ const Home: NextPage = () => <MainLayout><Note/></MainLayout>
 
 export default Home
 
-

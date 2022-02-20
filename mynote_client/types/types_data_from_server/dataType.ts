@@ -1,5 +1,5 @@
 export type DATAType = {
-  id?: string
-  label?: string
+  _id: string
+  title?: string
   children?: DATAType[]
 }

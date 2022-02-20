@@ -2,7 +2,7 @@ import {Field, InputType} from "@nestjs/graphql";
 import {Schema as MongooseSchema} from 'mongoose';
 
 @InputType()
-export class CreateNoteInput {
+export class CreateDocumentInput {
   @Field(() => String)
   title: string
 
@@ -14,7 +14,7 @@ export class CreateNoteInput {
 }
 
 @InputType()
-export class ListNoteInput {
+export class ListDocumentInput {
   @Field(() => String, {nullable: true})
   _id?: MongooseSchema.Types.ObjectId
 
@@ -29,7 +29,7 @@ export class ListNoteInput {
 }
 
 @InputType()
-export class UpdateNoteInput {
+export class UpdateDocumentInput {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId
 

@@ -7,7 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { HobbyModule } from './hobby/hobby.module';
 import {PersonModule} from "./person/person.module";
 import { FolderModule } from './folder/folder.module';
-import { NoteModule } from './note/note.module';
+import { DocumentModule } from './document/document.module';
 import {Folder, FolderSchema} from "./folder/folder.model";
 
 const url = process.env.MONGO_URL || 'localhost';
@@ -24,7 +24,7 @@ const url = process.env.MONGO_URL || 'localhost';
     PersonModule,
     HobbyModule,
     FolderModule,
-    NoteModule,
+    DocumentModule,
   ],
   controllers: [AppController],
   providers: [ AppService],

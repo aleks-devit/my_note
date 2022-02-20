@@ -9,12 +9,15 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 let apolloClient
 
 function createApolloClient() {
+    const url = typeof window === 'undefined' ? 'server' : 'localhost'
+
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
         link: new HttpLink({
-            uri: 'http://server:5000/graphql', // Server URL (must be absolute)
+            uri: `http://${url}:5000/graphql`, // Server URL (must be absolute)
             credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
         }),
+
         cache: new InMemoryCache({
             typePolicies: {
                 Query: {

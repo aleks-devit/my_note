@@ -1,35 +1,35 @@
 import {Field, ObjectType} from "@nestjs/graphql";
-import {Document, Schema as MongooseSchema} from 'mongoose';
+import {Document as MongoDocument, Schema as MongooseSchema} from 'mongoose';
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {Note} from "../note/note.model";
+import {Document} from "../document/document.model";
 
 @ObjectType()
 @Schema()
 export class Folder {
-  @Field(() => String)
-  _id: MongooseSchema.Types.ObjectId
+  @Field(() => String, {nullable: true})
+  _id?: MongooseSchema.Types.ObjectId
 
-  @Field(() => String)
+  @Field(() => String, {nullable: true})
   @Prop()
-  title: string
+  title?: string
 
-  @Field(() => String)
+  @Field(() => String, {nullable: true})
   @Prop()
-  pathname: string
+  pathname?: string
 
-  @Field(() => Folder)
+  @Field(() => Folder, {nullable: true})
   @Prop({type: MongooseSchema.Types.ObjectId, ref: Folder.name})
-  parentFolderId: MongooseSchema.Types.ObjectId | Folder
+  parentFolderId?: MongooseSchema.Types.ObjectId | Folder
 
-  @Field(() => [Folder])
+  @Field(() => [Folder], { nullable: 'itemsAndList' })
   @Prop({type: [MongooseSchema.Types.ObjectId], ref: Folder.name})
-  childrenFolders: MongooseSchema.Types.ObjectId[] | Folder[]
+  childFoldersIds?: MongooseSchema.Types.ObjectId[] | Folder[]
 
-  @Field(() => [Note])
-  @Prop({type: [MongooseSchema.Types.ObjectId], ref: Note.name})
-  childrenNotes: MongooseSchema.Types.ObjectId[] | Note[]
+  @Field(() => [Document], { nullable: 'itemsAndList' })
+  @Prop({type: [MongooseSchema.Types.ObjectId], ref: Document.name})
+  childDocsIds?: MongooseSchema.Types.ObjectId[] | Document[]
 }
 
-export type FolderDocument = Folder & Document
+export type FolderDocument = Folder & MongoDocument
 
 export const FolderSchema = SchemaFactory.createForClass(Folder)

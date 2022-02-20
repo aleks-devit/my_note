@@ -18,7 +18,7 @@ const Branch: FC<BranchProps> = ({item, level}) => {
       const newLevel = level + 1
 
       return item.children && item.children.map((child: DATAType) => {
-        return <Branch key={child.id} item={child} level={newLevel}/>
+        return <Branch key={child._id} item={child} level={newLevel}/>
       })
     }
 

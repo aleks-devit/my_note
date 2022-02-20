@@ -10,7 +10,7 @@ interface TreeProps {
 const Tree: FC<TreeProps> = ({data}) => {
   return (
     <div>
-      {data.map((item: DATAType) => <Branch key={item.id} item={item} level={0}/>)}
+      {data.map((item: DATAType) => <Branch key={item._id} item={item} level={0}/>)}
     </div>
   );
 };

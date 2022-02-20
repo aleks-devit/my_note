@@ -28,6 +28,7 @@
     "@nestjs/mongoose": "^9.0.2",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.6.2",
+    "array-to-tree": "^3.3.2",
     "axios": "^0.25.0",
     "graphql": "^15.8.0",
     "mongoose": "^6.2.0",

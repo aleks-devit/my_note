@@ -22,10 +22,10 @@ export class ListFolderInput {
   pathname?: string
 
   @Field(() => String, {nullable: true})
-  childrenFolders?: MongooseSchema.Types.ObjectId[]
+  childFoldersIds?: MongooseSchema.Types.ObjectId[]
 
   @Field(() => String, {nullable: true})
-  childrenNotes?: MongooseSchema.Types.ObjectId[]
+  childDocsIds?: MongooseSchema.Types.ObjectId[]
 }
 
 @InputType()
@@ -40,8 +40,8 @@ export class UpdateFolderInput {
   pathname?: string
 
   @Field(() => String, {nullable: true})
-  childrenFolders?: MongooseSchema.Types.ObjectId[]
+  childFoldersIds?: MongooseSchema.Types.ObjectId[]
 
   @Field(() => String, {nullable: true})
-  childrenNotes?: MongooseSchema.Types.ObjectId[]
+  childDocsIds?: MongooseSchema.Types.ObjectId[]
 }

@@ -2,20 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Note {
+type Document {
   _id: String
   title: String
   folderPathname: String
+  parentFolderId: String
   content: String
 }
 
 type Folder {
-  _id: String!
-  title: String!
-  pathname: String!
-  parentFolderId: Folder!
-  childrenFolders: [Folder!]!
-  childrenNotes: [Note!]!
+  _id: String
+  title: String
+  pathname: String
+  parentFolderId: Folder
+  childFoldersIds: [Folder]
+  childDocsIds: [Document]
 }
 
 type Hobby {
@@ -36,8 +37,8 @@ type Query {
   hobbies(filters: ListHobbyInput): [Hobby!]!
   folder(_id: String!): Folder!
   folders(filters: ListFolderInput): [Folder!]!
-  note(_id: String!): Note!
-  notes(filters: ListNoteInput): [Note!]!
+  document(_id: String!): Document!
+  documents(filters: ListDocumentInput): [Document!]!
 }
 
 input ListPersonInput {
@@ -55,11 +56,11 @@ input ListFolderInput {
   _id: String
   title: String
   pathname: String
-  childrenFolders: String
-  childrenNotes: String
+  childFoldersIds: String
+  childDocsIds: String
 }
 
-input ListNoteInput {
+input ListDocumentInput {
   _id: String
   title: String
   folderPathname: String
@@ -76,9 +77,9 @@ type Mutation {
   createFolder(payload: CreateFolderInput!): Folder!
   updateFolder(payload: UpdateFolderInput!): Folder!
   deleteFolder(_id: String!): Folder!
-  createNote(payload: CreateNoteInput!): Note!
-  updateNote(payload: UpdateNoteInput!): Note!
-  deleteNote(_id: String!): Note!
+  createDocument(payload: CreateDocumentInput!): Document!
+  updateDocument(payload: UpdateDocumentInput!): Document!
+  deleteDocument(_id: String!): Document!
 }
 
 input CreatePersonInput {
@@ -110,17 +111,17 @@ input UpdateFolderInput {
   _id: String!
   title: String
   pathname: String
-  childrenFolders: String
-  childrenNotes: String
+  childFoldersIds: String
+  childDocsIds: String
 }
 
-input CreateNoteInput {
+input CreateDocumentInput {
   title: String!
   content: String!
   folderPathname: String
 }
 
-input UpdateNoteInput {
+input UpdateDocumentInput {
   _id: String!
   title: String
   folderPathname: String

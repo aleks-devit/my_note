@@ -12,9 +12,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  @Get('child')
-  async childRefactoring() {
-    return this.appService.addToChildFolder()
-  }
 }

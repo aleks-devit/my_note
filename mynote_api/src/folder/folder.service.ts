@@ -3,10 +3,14 @@ import {InjectModel} from "@nestjs/mongoose";
 import {Folder, FolderDocument} from "./folder.model";
 import {Model, Schema as MongooseSchema} from "mongoose";
 import {CreateFolderInput, ListFolderInput, UpdateFolderInput} from "./folder.inputs";
+import {DocumentService} from "../document/document.service";
 
 @Injectable()
 export class FolderService {
-  constructor(@InjectModel(Folder.name) private folderModel: Model<FolderDocument>) {}
+  constructor(
+    @InjectModel(Folder.name) private folderModel: Model<FolderDocument>,
+    private documentService: DocumentService
+  ) {}
 
 
   create(payload: CreateFolderInput) {
@@ -31,4 +35,5 @@ export class FolderService {
   delete(_id: MongooseSchema.Types.ObjectId) {
     return this.folderModel.findByIdAndDelete(_id).exec()
   }
+
 }

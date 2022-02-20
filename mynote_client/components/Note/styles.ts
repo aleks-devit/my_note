@@ -20,4 +20,5 @@ export const NoteMarkDown = styled(ReactMarkdown)`
   flex: 0 0 50%;
   padding: 20px;
   outline: none;
+  overflow-y: scroll;
 `

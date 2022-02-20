@@ -1,6 +1,6 @@
 import type {NextPage} from 'next'
-import Note from "../components/Note/Note";
-import MainLayout from "../components/layout/MainLayout";
+import Note from "../src/components/Note/Note";
+import MainLayout from "../src/components/layout/MainLayout";
 
 const Home: NextPage = () => <MainLayout><Note/></MainLayout>
 

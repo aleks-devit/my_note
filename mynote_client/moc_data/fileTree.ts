@@ -1,4 +1,4 @@
-import {DATAType} from "../types/types_data_from_server/dataType";
+import {DATAType} from "../src/types/types_data_from_server/dataType";
 
 export const DATA: DATAType[] = [
   {

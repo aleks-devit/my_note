@@ -28,7 +28,7 @@ const Node: FC<NodeProps> = ({item, level, onToggle, selected, isFolder}) => {
         <NodeItem>
           <NodeRow>
             <AiOutlineFolder/>
-            <Tooltip title={item.title || ''} enterDelay={3000} arrow>
+            <Tooltip title={item.title || ''} enterDelay={1500} arrow>
               <NodeTextWrap>
                 {item.title}
               </NodeTextWrap>
@@ -40,10 +40,10 @@ const Node: FC<NodeProps> = ({item, level, onToggle, selected, isFolder}) => {
       </NodeWrapper>
       :
       <NodeWrapper level={level}>
-        <NodeItem onClick={getDocument}>
-          <NodeRow>
+        <NodeItem>
+          <NodeRow onClick={getDocument}>
             {isFolder ? <AiOutlineFolder/> : <AiOutlineFile/>}
-            <Tooltip title={item.title || ''} enterDelay={3000} arrow>
+            <Tooltip title={item.title || ''} enterDelay={1500} arrow>
               <NodeTextWrap>
                 {item.title}
               </NodeTextWrap>

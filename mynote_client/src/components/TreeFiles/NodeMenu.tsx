@@ -5,24 +5,19 @@ import {Button, Menu, MenuItem} from "@mui/material";
 const NodeMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+
   return (
     <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-      <MoreVertIcon/>
-      </Button>
+      <div onClick={handleClick}>
+        <MoreVertIcon />
+      </div>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -32,9 +27,10 @@ const NodeMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Создать документ</MenuItem>
+        <MenuItem onClick={handleClose}>Создать папку</MenuItem>
+        <MenuItem onClick={handleClose}>Переименовать</MenuItem>
+        <MenuItem onClick={handleClose}>Удалить</MenuItem>
       </Menu>
     </div>
   );

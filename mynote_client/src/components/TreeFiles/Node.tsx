@@ -1,10 +1,10 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 import {DATAType} from "../../types/types_data_from_server/dataType";
-import {NodeItem, NodeWrapper} from "./styles";
+import {NodeItem, NodeRow, NodeTextWrap, NodeWrapper} from "./styles";
 import {AiOutlineDown, AiOutlineFile, AiOutlineFolder, AiOutlineUp} from 'react-icons/ai';
-import { gql, useLazyQuery} from "@apollo/client";
-import { Context } from '../../context'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
+import {Tooltip} from "@mui/material";
+import NodeMenu from "./NodeMenu";
 
 
 interface NodeProps {
@@ -24,18 +24,32 @@ const Node: FC<NodeProps> = ({item, level, onToggle, selected, isFolder}) => {
 
   return (
     onToggle ?
-      <NodeWrapper level={level} onClick={onToggle}>
+      <NodeWrapper level={level}>
         <NodeItem>
-          <AiOutlineFolder/>
-          {item.title}
-          {selected ? <AiOutlineDown/> : <AiOutlineUp/>}
+          <NodeRow>
+            <AiOutlineFolder/>
+            <Tooltip title={item.title || ''} enterDelay={3000} arrow>
+              <NodeTextWrap>
+                {item.title}
+              </NodeTextWrap>
+            </Tooltip>
+            {selected ? <AiOutlineDown onClick={onToggle}/> : <AiOutlineUp onClick={onToggle}/>}
+          </NodeRow>
+          <NodeMenu/>
         </NodeItem>
       </NodeWrapper>
       :
       <NodeWrapper level={level}>
-        <NodeItem  onClick={getDocument}>
-          {isFolder ? <AiOutlineFolder/> : <AiOutlineFile/>}
-          {item.title}
+        <NodeItem onClick={getDocument}>
+          <NodeRow>
+            {isFolder ? <AiOutlineFolder/> : <AiOutlineFile/>}
+            <Tooltip title={item.title || ''} enterDelay={3000} arrow>
+              <NodeTextWrap>
+                {item.title}
+              </NodeTextWrap>
+            </Tooltip>
+          </NodeRow>
+          <NodeMenu/>
         </NodeItem>
       </NodeWrapper>
   );

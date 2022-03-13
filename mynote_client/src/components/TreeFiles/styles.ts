@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 interface NodeWrapperProps {
-  level: number
+    level: number
 }
 
 export const NodeWrapper = styled.div<NodeWrapperProps>`
@@ -9,8 +9,24 @@ export const NodeWrapper = styled.div<NodeWrapperProps>`
   cursor: pointer;
 `
 
+
+export const NodeTextWrap = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 0 0 86%;
+`
+
 export const NodeItem = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
+  justify-content: space-between;
 `
+
+export const NodeRow = styled.div`
+  display: flex;
+  align-items: center;  
+  width: 90%;
+  
+ `

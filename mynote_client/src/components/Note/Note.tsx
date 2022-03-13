@@ -40,8 +40,9 @@ const Note = () => {
   const callGetDocumentContent = () => {
     if (docId) {
       getDocumentContent()
-        .then(data => data.data.document)
-        .then(document => setInput(document.content))
+        .then(data => {
+          if (!!data?.data?.document) setInput(data?.data?.document.content)
+        })
     }
   }
 

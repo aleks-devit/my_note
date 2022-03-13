@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const MainLayoutWrapper = styled.div`
-  height: calc(100vh - 100px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `
@@ -17,13 +17,14 @@ export const MainLayoutHeader = styled.div`
 export const MainLayoutRow = styled.div`
   flex: 1;
   display: flex;
-  height: 100%;
+  height: calc(100% - 100px);
 `
 
 export const MainLayoutLeftSide = styled.div`
   width: 300px;
   border-right: 3px solid black;
   overflow-y: scroll;
+  overflow-x: hidden;
 `
 
 export const MainLayoutRightSide = styled.div`

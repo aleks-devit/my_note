@@ -26,6 +26,7 @@ const UPDATE_DOCUMENT = gql`
 `
 
 const Note = () => {
+  // @ts-ignore
   const {state, dispatch} = useContext(Context);
   const [updateDocument, {data, loading, error}] = useMutation(UPDATE_DOCUMENT);
   const router = useRouter()

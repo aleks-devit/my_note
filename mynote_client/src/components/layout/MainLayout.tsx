@@ -8,7 +8,7 @@ import {
 } from "./styles"
 import {gql, useQuery} from "@apollo/client";
 import arrayToTree from "array-to-tree"
-import Header from "./Header";
+import Header from "./Header/Header";
 import Footer from "./Footer";
 
 

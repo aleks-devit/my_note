@@ -17,7 +17,7 @@ export const MainLayoutHeader = styled.div`
 export const MainLayoutRow = styled.div`
   flex: 1;
   display: flex;
-  height: calc(100% - 100px);
+  height: calc(100% - 120px);
 `
 
 export const MainLayoutLeftSide = styled.div`
@@ -33,8 +33,9 @@ export const MainLayoutRightSide = styled.div`
 
 export const MainLayoutFooter = styled.div`
   flex: 0 0 50px;
-  background-color: lightgray;
+  background-color: #556CD6;
   display: flex;
   align-items: center;
   padding: 0 10px;
+  color: #fff;
   `

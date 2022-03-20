@@ -27,7 +27,7 @@ const Node: FC<NodeProps> = ({item, level, onToggle, selected, isFolder}) => {
       <NodeWrapper level={level}>
         <NodeItem>
           <NodeRow>
-            <AiOutlineFolder/>
+            <AiOutlineFolder size={24}/>
             <Tooltip title={item.title || ''} enterDelay={1500} arrow>
               <NodeTextWrap>
                 {item.title}

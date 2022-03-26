@@ -14,7 +14,7 @@ export const NoteTextArea = styled.textarea`
   outline: none;
   resize: none;
   border: none;
-  border-right: 1px solid #000;
+  overflow-y: scroll;
   ${TextCustomScroll}
 `
 

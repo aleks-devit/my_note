@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const TextCustomScroll = `
 &::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
     background-color: #F5F5F5;
   }
   &::-webkit-scrollbar-track {
@@ -11,7 +11,6 @@ export const TextCustomScroll = `
   }
   &::-webkit-scrollbar-thumb {
     background-color: #556CD6;
-    border-radius: 10px;
   }
 `
 

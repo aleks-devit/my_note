@@ -1,5 +1,8 @@
 import styled from "styled-components"
-import {CustomScroll} from "../../styles/styled-components/CustomScroll";
+import {CustomScroll, TextCustomScroll} from "../../styles/styled-components/CustomScroll";
+import {Drawer} from "@mui/material";
+import LayoutContent from "./items/LayoutContent";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const MainLayoutWrapper = styled.div`
   height: 100vh;
@@ -7,29 +10,29 @@ export const MainLayoutWrapper = styled.div`
   flex-direction: column;
 `
 
-export const MainLayoutHeader = styled.div`
-  flex: 0 0 50px;
-  background-color: lightgray;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  `
-
 export const MainLayoutRow = styled.div`
   flex: 1;
   display: flex;
   height: calc(100% - 120px);
 `
 
-export const MainLayoutLeftSide = styled(CustomScroll)`
-  width: 300px;
-  border-right: 3px solid black;
-  overflow-y: scroll;
-  overflow-x: hidden;
-`
+export const MainLayoutLeftSide = styled(Drawer)`
+  width: ${(props: {width: number}) => props.width + 'px'};
+  flex-shrink: 0;
+  position: relative;
+  
+  & .MuiDrawer-paper {
+    width: ${(props: {width: number}) => props.width + 'px'};
+    box-sizing: border-box;
+    position: absolute;
+    ${TextCustomScroll}
+  }
+  `
 
-export const MainLayoutRightSide = styled.div`
+export const MainLayoutRightSide = styled(LayoutContent)`
   flex: 1;
+  position: relative;
+  padding: 0;
 `
 
 export const MainLayoutFooter = styled.div`
@@ -39,4 +42,16 @@ export const MainLayoutFooter = styled.div`
   align-items: center;
   padding: 0 10px;
   color: #fff;
+  `
+
+export const MainLayoutHideLeftSideBtn = styled(ArrowBackIcon)`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  left: '5px';
+  z-index: 1201;
+  transform: ${({open}: {open: boolean}) => open ? '' : 'rotate(180deg)'};
+  transition: transform 0.3s ease-in-out;
   `

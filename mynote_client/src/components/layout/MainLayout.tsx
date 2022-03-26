@@ -1,42 +1,30 @@
-import React, {FC, useEffect, useState} from 'react';
-import Tree from "../TreeFiles/Tree";
-import {MainLayoutLeftSide, MainLayoutRightSide, MainLayoutRow, MainLayoutWrapper} from "./styles"
-import {gql, useQuery} from "@apollo/client";
+import React, {FC, useEffect, useState} from 'react'
+import Tree from "../TreeFiles/Tree"
+import {
+  MainLayoutHideLeftSideBtn,
+  MainLayoutLeftSide,
+  MainLayoutRightSide,
+  MainLayoutRow,
+  MainLayoutWrapper
+} from "./styles"
+import {useQuery} from "@apollo/client"
 import arrayToTree from "array-to-tree"
-import Header from "./Header/Header";
-import Footer from "./Footer";
-import {BallTriangle} from 'react-loader-spinner';
-import {CustomScroll} from "../../styles/styled-components/CustomScroll";
+import Header from "./Header/Header"
+import Footer from "./Footer"
+import {GET_TREE} from "./queries"
+import Preloader from "./items/Preloader";
+import {drawerWidth} from './items/LayoutContent'
 
-
-const GET_TREE = gql`
-    query FoldersDocuments{
-        folders{
-            _id
-            title
-            parentFolderId {
-                _id
-            }
-            childFoldersIds{
-                _id
-            }
-            childDocsIds{
-                _id
-            }
-        }
-
-        documents {
-            _id
-            title
-            parentFolderId
-        }
-    }
-`
 
 const MainLayout: FC = ({children}) => {
-  const {loading, error, data} = useQuery(GET_TREE);
+  const {loading, error, data} = useQuery(GET_TREE)
 
   const [tree, setTree] = useState<any>([])
+  const [open, setOpen] = useState(true)
+
+  const handleDrawerSwitch = () => {
+    setOpen(prevOpen => !prevOpen)
+  }
 
   useEffect(() => {
     if (!!data) {
@@ -55,27 +43,22 @@ const MainLayout: FC = ({children}) => {
     <MainLayoutWrapper>
       <Header/>
       <MainLayoutRow>
-        <MainLayoutLeftSide>
-            {loading ? <BallTriangle
-                wrapperStyle={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  height: '100%',
-                  alignItems: 'center'
-                }}
-                color="#556CD6"
-                height={100}
-                width={100}/>
-              :
-              <Tree data={tree}/>}
+        <MainLayoutLeftSide
+          width={drawerWidth}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          {loading ? Preloader : <Tree data={tree}/>}
         </MainLayoutLeftSide>
-        <MainLayoutRightSide>
+        <MainLayoutRightSide open={open}>
+          <MainLayoutHideLeftSideBtn open={open} onClick={handleDrawerSwitch}/>
           {children}
         </MainLayoutRightSide>
       </MainLayoutRow>
       <Footer/>
     </MainLayoutWrapper>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout

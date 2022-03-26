@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {CustomScroll} from "../../styles/styled-components/CustomScroll";
 
 export const MainLayoutWrapper = styled.div`
   height: 100vh;
@@ -20,7 +21,7 @@ export const MainLayoutRow = styled.div`
   height: calc(100% - 120px);
 `
 
-export const MainLayoutLeftSide = styled.div`
+export const MainLayoutLeftSide = styled(CustomScroll)`
   width: 300px;
   border-right: 3px solid black;
   overflow-y: scroll;

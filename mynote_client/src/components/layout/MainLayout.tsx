@@ -1,16 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import Tree from "../TreeFiles/Tree";
-import {
-  MainLayoutRow,
-  MainLayoutLeftSide,
-  MainLayoutWrapper,
-  MainLayoutHeader, MainLayoutFooter, MainLayoutRightSide
-} from "./styles"
+import {MainLayoutLeftSide, MainLayoutRightSide, MainLayoutRow, MainLayoutWrapper} from "./styles"
 import {gql, useQuery} from "@apollo/client";
 import arrayToTree from "array-to-tree"
 import Header from "./Header/Header";
 import Footer from "./Footer";
-import { BallTriangle } from 'react-loader-spinner';
+import {BallTriangle} from 'react-loader-spinner';
+import {CustomScroll} from "../../styles/styled-components/CustomScroll";
 
 
 const GET_TREE = gql`
@@ -39,7 +35,7 @@ const GET_TREE = gql`
 
 const MainLayout: FC = ({children}) => {
   const {loading, error, data} = useQuery(GET_TREE);
-  // Тут будет useLazyQuery на запрос за конкретной заметкой
+
   const [tree, setTree] = useState<any>([])
 
   useEffect(() => {
@@ -60,18 +56,18 @@ const MainLayout: FC = ({children}) => {
       <Header/>
       <MainLayoutRow>
         <MainLayoutLeftSide>
-          {loading ? <BallTriangle
-            wrapperStyle={{
-              display: 'flex',
-              justifyContent: 'center',
-              height: '100%',
-              alignItems: 'center'
-          }}
-            color="#556CD6"
-            height={100}
-            width={100}/>
-            :
-            <Tree data={tree}/>}
+            {loading ? <BallTriangle
+                wrapperStyle={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  height: '100%',
+                  alignItems: 'center'
+                }}
+                color="#556CD6"
+                height={100}
+                width={100}/>
+              :
+              <Tree data={tree}/>}
         </MainLayoutLeftSide>
         <MainLayoutRightSide>
           {children}

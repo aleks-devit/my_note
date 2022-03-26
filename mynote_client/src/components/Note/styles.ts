@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import ReactMarkdown from "react-markdown";
+import {TextCustomScroll} from "../../styles/styled-components/CustomScroll";
 
 export const NoteWrapper = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ export const NoteTextArea = styled.textarea`
   resize: none;
   border: none;
   border-right: 1px solid #000;
+  ${TextCustomScroll}
 `
 
 export const NoteMarkDown = styled(ReactMarkdown)`
@@ -21,4 +23,5 @@ export const NoteMarkDown = styled(ReactMarkdown)`
   padding: 20px;
   outline: none;
   overflow-y: scroll;
+  ${TextCustomScroll}
 `

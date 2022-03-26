@@ -1,4 +1,4 @@
-import '../src/styles/nulable.css'
+import '../src/styles/css/nulable.css'
 import type {AppProps} from 'next/app'
 import {ApolloProvider} from '@apollo/client'
 import {useApollo} from '../lib/apolloClient'

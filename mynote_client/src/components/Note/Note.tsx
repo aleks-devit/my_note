@@ -100,9 +100,7 @@ const Note = () => {
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>
             ) : (
-              <code className={className}>
-                {children}
-              </code>
+              <code className={className}>{children}</code>
             )
           }
         }}

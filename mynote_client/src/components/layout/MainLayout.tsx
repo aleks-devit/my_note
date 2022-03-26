@@ -10,6 +10,7 @@ import {gql, useQuery} from "@apollo/client";
 import arrayToTree from "array-to-tree"
 import Header from "./Header/Header";
 import Footer from "./Footer";
+import { BallTriangle } from 'react-loader-spinner';
 
 
 const GET_TREE = gql`
@@ -59,7 +60,18 @@ const MainLayout: FC = ({children}) => {
       <Header/>
       <MainLayoutRow>
         <MainLayoutLeftSide>
-          <Tree data={tree}/>
+          {loading ? <BallTriangle
+            wrapperStyle={{
+              display: 'flex',
+              justifyContent: 'center',
+              height: '100%',
+              alignItems: 'center'
+          }}
+            color="#556CD6"
+            height={100}
+            width={100}/>
+            :
+            <Tree data={tree}/>}
         </MainLayoutLeftSide>
         <MainLayoutRightSide>
           {children}

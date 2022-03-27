@@ -44,7 +44,6 @@ const NodeText: FC<NodeTextProps> = ({title, rename, onRename, isFolder, id}) =>
 
   return (
     <Tooltip title={title || ''} enterDelay={1500} arrow>
-      <span>
         {
           rename ? <input
               ref={input}
@@ -57,7 +56,6 @@ const NodeText: FC<NodeTextProps> = ({title, rename, onRename, isFolder, id}) =>
             :
             <NodeTextWrap>{name}</NodeTextWrap>
         }
-      </span>
     </Tooltip>
   );
 };

@@ -43,7 +43,7 @@ const Node: FC<NodeProps> = ({item, level, onToggle, selected, isFolder}) => {
       <NodeWrapper level={level}>
         <NodeItem>
           <NodeRow onClick={getDocument}>
-            {isFolder ? <AiOutlineFolder/> : <AiOutlineFile/>}
+            {isFolder ? <AiOutlineFolder size={24}/> : <AiOutlineFile size={24}/>}
               <NodeText
                 isFolder={isFolder}
                 id={item._id}

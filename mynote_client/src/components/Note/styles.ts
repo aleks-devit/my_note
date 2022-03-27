@@ -8,20 +8,22 @@ export const NoteWrapper = styled.div`
 `
 
 export const NoteTextArea = styled.textarea`
-  flex: 0 0 50%;
+  flex: ${({width}: {width: number}) => '0 0 ' + width + '%'};
   padding: 20px;
   font-size: 18px;
   outline: none;
   resize: none;
   border: none;
   overflow-y: scroll;
+  display: ${({width}: {width: number}) => width === 0 ? 'none' : 'block'};
   ${TextCustomScroll}
 `
 
 export const NoteMarkDown = styled(ReactMarkdown)`
-  flex: 0 0 50%;
+  flex: ${({width}: {width: number}) => '0 0 ' + width + '%'};
   padding: 20px;
   outline: none;
   overflow-y: scroll;
+  display: ${({width}: {width: number}) => width === 0 ? 'none' : 'block'};
   ${TextCustomScroll}
 `

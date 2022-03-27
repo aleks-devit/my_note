@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const TextCustomScroll = `
 &::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
     background-color: #F5F5F5;
   }
   &::-webkit-scrollbar-track {

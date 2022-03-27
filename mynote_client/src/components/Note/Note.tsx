@@ -1,33 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {NoteMarkDown, NoteTextArea, NoteWrapper} from "./styles"
-import {gql, useLazyQuery, useMutation} from "@apollo/client";
+import {useLazyQuery, useMutation} from "@apollo/client";
 import {useRouter} from 'next/router'
 import {Context} from '../../context'
+import {GET_DOCUMENT, UPDATE_DOCUMENT} from './queries';
 
-const GET_DOCUMENT = gql`
-    query Document ($_id: String!){
-        document (_id: $_id) {
-            _id
-            title
-            content
-        }
-    }
-`
-
-const UPDATE_DOCUMENT = gql`
-    mutation UpdateDocument ($_id: String!, $content: String){
-        updateDocument (payload: {_id: $_id, content: $content}) {
-            _id
-            title
-            content
-        }
-    }
-`
 
 const Note = () => {
   // @ts-ignore
   const {state, dispatch} = useContext(Context);
+
   const [updateDocument, {data, loading, error}] = useMutation(UPDATE_DOCUMENT);
   const router = useRouter()
   const {docId} = router.query
@@ -37,7 +20,10 @@ const Note = () => {
   );
   // Тут я выставляю инпут получая данные с кеша
   const [input, setInput] = useState('')
-
+  const [mode, setMode] = useState({
+    textarea: 50,
+    markdown: 50
+  })
   const callGetDocumentContent = () => {
     if (docId) {
       getDocumentContent()
@@ -46,6 +32,29 @@ const Note = () => {
         })
     }
   }
+
+  useEffect(() => {
+    switch (state.viewMode) {
+      case 'only-text':
+        setMode({
+          textarea: 100,
+          markdown: 0
+        })
+        break;
+      case 'only-image':
+        setMode({
+          textarea: 0,
+          markdown: 100
+        })
+        break;
+      default:
+        setMode({
+          textarea: 50,
+          markdown: 50
+        })
+        break;
+    }
+  }, [state.viewMode])
 
   useEffect(() => {
     callGetDocumentContent()
@@ -90,8 +99,9 @@ const Note = () => {
 
   return (
     <NoteWrapper>
-      <NoteTextArea autoFocus value={input} onChange={e => setInput(e.target.value)}/>
+      <NoteTextArea width={mode.textarea} autoFocus value={input} onChange={e => setInput(e.target.value)}/>
       <NoteMarkDown
+        width={mode.markdown}
         components={{
           code({inline, className, children}) {
             const match = /language-(\w+)/.exec(className || '')

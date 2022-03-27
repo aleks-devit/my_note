@@ -1,12 +1,7 @@
-import { useState, useEffect, useReducer, createContext } from "react";
-import { document } from "./reducers/document";
+import {createContext, useReducer} from "react";
+import {document} from "./reducers/document";
 import {app} from "./reducers/app";
-
-// initial state
-const initialState = {
-  saveDocument: false,
-  status: 'Ожидание...'
-};
+import initialState from "./initialState";
 
 // create context
 const Context = createContext({});

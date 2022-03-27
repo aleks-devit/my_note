@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useContext, useEffect, useState} from 'react'
 import Tree from "../TreeFiles/Tree"
 import {
   MainLayoutHideLeftSideBtn,
@@ -14,12 +14,11 @@ import Footer from "./Footer"
 import {GET_TREE} from "./queries"
 import Preloader from "./items/Preloader";
 import {drawerWidth} from './items/LayoutContent'
-import LayoutViewSwitcher from "./items/LayoutViewSwitcher";
+import { Context } from '../../context'
 
 
 const MainLayout: FC = ({children}) => {
   const {loading, error, data} = useQuery(GET_TREE)
-
   const [tree, setTree] = useState<any>([])
   const [open, setOpen] = useState(true)
 
@@ -40,6 +39,7 @@ const MainLayout: FC = ({children}) => {
     }
   }, [data])
 
+
   return (
     <MainLayoutWrapper>
       <Header/>
@@ -50,7 +50,7 @@ const MainLayout: FC = ({children}) => {
           anchor="left"
           open={open}
         >
-          {loading ? Preloader : <Tree data={tree}/>}
+          {loading ? <Preloader/> : <Tree data={tree}/>}
         </MainLayoutLeftSide>
         <MainLayoutRightSide open={open}>
           <MainLayoutHideLeftSideBtn open={open} onClick={handleDrawerSwitch}/>

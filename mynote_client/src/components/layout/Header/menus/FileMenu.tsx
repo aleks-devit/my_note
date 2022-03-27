@@ -20,7 +20,7 @@ const FileMenu: FC<FileMenuProps> = ({anchorEl, open, handleClose}) => {
       payload: true,
     })
   }
-  console.log((matches && typeof anchorEl !== 'undefined' && typeof open !== 'undefined' && !!handleClose))
+
   return (
     <>
       {matches && typeof anchorEl !== 'undefined' && typeof open !== 'undefined' && !!handleClose ?

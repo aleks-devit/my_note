@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {MainLayoutFooter} from "./styles";
-import {Context} from '../../context'
+import {useSelector} from "react-redux";
+
 const Footer = () => {
-  // @ts-ignore
-  const {state, dispatch} = useContext(Context);
+  const state = useSelector((state: any) => state.file);
 
   return (
     <MainLayoutFooter>

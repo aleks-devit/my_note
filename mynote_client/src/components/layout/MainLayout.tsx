@@ -1,5 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react'
-import Tree from "../TreeFiles/Tree"
+import Tree from "../treeFiles/Tree"
 import {
   MainLayoutHideLeftSideBtn,
   MainLayoutLeftSide,
@@ -14,8 +14,6 @@ import Footer from "./Footer"
 import {GET_TREE} from "./queries"
 import Preloader from "./items/Preloader";
 import {drawerWidth} from './items/LayoutContent'
-import { Context } from '../../context'
-
 
 const MainLayout: FC = ({children}) => {
   const {loading, error, data} = useQuery(GET_TREE)

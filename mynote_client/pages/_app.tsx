@@ -2,13 +2,14 @@ import '../src/styles/css/nulable.css'
 import type {AppProps} from 'next/app'
 import {ApolloProvider} from '@apollo/client'
 import {useApollo} from '../lib/apolloClient'
-import {Provider} from '../src/context'
+import { Provider } from 'react-redux'
 import Head from 'next/head';
 import {ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {CacheProvider, EmotionCache} from '@emotion/react';
 import theme from '../src/theme';
 import createEmotionCache from '../src/assets/createEmotionCache';
+import store from '../src/store/store'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,7 +24,7 @@ function MyApp(props: MyAppProps) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <Provider>
+      <Provider store={store}>
         <CacheProvider value={emotionCache}>
           <Head>
             <meta name="viewport" content="initial-scale=1, width=device-width"/>

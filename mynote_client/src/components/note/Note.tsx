@@ -1,17 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {NoteMarkDown, NoteTextArea, NoteWrapper} from "./styles"
 import {useLazyQuery, useMutation} from "@apollo/client";
 import {useRouter} from 'next/router'
-import {Context} from '../../context'
 import {GET_DOCUMENT, UPDATE_DOCUMENT} from './queries';
+import {setStatus, switchSaveDocument} from "../../store/fileSlice/fileSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const Note = () => {
-  // @ts-ignore
-  const {state, dispatch} = useContext(Context);
-
-  const [updateDocument, {data, loading, error}] = useMutation(UPDATE_DOCUMENT);
+  const dispatch = useDispatch()
+  const state = useSelector((state: any) => state.file);
+  const [updateDocument] = useMutation(UPDATE_DOCUMENT);
   const router = useRouter()
   const {docId} = router.query
   const [getDocumentContent] = useLazyQuery(
@@ -62,35 +62,20 @@ const Note = () => {
 
   useEffect(() => {
     if (!!state.saveDocument) {
-      dispatch({
-        type: "CHANGE_STATUS",
-        payload: 'Сохранение...',
-      })
+      dispatch(setStatus('Сохранение...'))
       updateDocument({
         variables: {
           _id: docId,
           content: input
         }
       }).then(() => {
-        dispatch({
-          type: "CHANGE_STATUS",
-          payload: 'Сохранено!',
-        })
-        dispatch({
-          type: "SAVE_DOCUMENT",
-          payload: false,
-        })
+        dispatch(setStatus('Сохранено!'))
+        dispatch(switchSaveDocument())
       }).catch(() => {
-        dispatch({
-          type: "CHANGE_STATUS",
-          payload: 'Ошибка!',
-        })
+        dispatch(setStatus('Ошибка!'))
       }).finally(() => {
         setTimeout(() => {
-          dispatch({
-            type: "CHANGE_STATUS",
-            payload: 'Ожидание...',
-          })
+          dispatch(setStatus('Ожидание...'))
         }, 3000)
       })
 

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {Button, Menu, MenuItem} from "@mui/material";
+import {Menu, MenuItem} from "@mui/material";
 
-const NodeMenu = () => {
+
+interface NodeMenuProps {
+    onRename: (boolean: boolean) => void;
+}
+
+const NodeMenu: FC<NodeMenuProps> = ({onRename}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -10,6 +15,11 @@ const NodeMenu = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleRename = () => {
+    onRename(true);
+    handleClose()
   };
 
 
@@ -29,7 +39,7 @@ const NodeMenu = () => {
       >
         <MenuItem onClick={handleClose}>Создать документ</MenuItem>
         <MenuItem onClick={handleClose}>Создать папку</MenuItem>
-        <MenuItem onClick={handleClose}>Переименовать</MenuItem>
+        <MenuItem onClick={handleRename}>Переименовать</MenuItem>
         <MenuItem onClick={handleClose}>Удалить</MenuItem>
       </Menu>
     </div>

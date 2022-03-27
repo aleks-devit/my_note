@@ -1,18 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {LayoutViewSwitcherBtn, LayoutViewSwitcherWrapper} from "../styles";
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import ImageIcon from '@mui/icons-material/Image';
-import { Context } from '../../../context';
+import {useDispatch} from "react-redux";
+import {setViewMode} from "../../../store/appSlice/appSlice";
 
 const LayoutViewSwitcher = () => {
-  // @ts-ignore
-  const {state, dispatch} = useContext(Context);
+  const dispatch = useDispatch();
 
   const handleViewModeChange = (mode: string) => {
-    dispatch({
-      type: "CHANGE_VIEW_MODE",
-      payload: mode,
-    })
+    dispatch(setViewMode(mode));
   };
 
   return (

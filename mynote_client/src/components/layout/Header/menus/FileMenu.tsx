@@ -1,7 +1,8 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 import {Divider, List, ListItem, Menu, MenuList, Paper, useMediaQuery} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import {Context} from "../../../../context"
+import {switchSaveDocument} from "../../../../store/fileSlice/fileSlice";
+import {useDispatch} from "react-redux";
 
 interface FileMenuProps {
   anchorEl?: null | HTMLElement,
@@ -10,15 +11,11 @@ interface FileMenuProps {
 }
 
 const FileMenu: FC<FileMenuProps> = ({anchorEl, open, handleClose}) => {
-  // @ts-ignore
-  const {state, dispatch} = useContext(Context);
+  const dispatch = useDispatch();
   const matches = useMediaQuery('(min-width:899px)')
 
   const handleSaveDocument = () => {
-    dispatch({
-      type: "SAVE_DOCUMENT",
-      payload: true,
-    })
+    dispatch(switchSaveDocument())
   }
 
   return (

@@ -14,6 +14,7 @@ import Footer from "./Footer"
 import {GET_TREE} from "./queries"
 import Preloader from "./items/Preloader";
 import {drawerWidth} from './items/LayoutContent'
+import MainAlert from "../alert/MainAlert";
 
 const MainLayout: FC = ({children}) => {
   const {loading, error, data} = useQuery(GET_TREE)
@@ -56,6 +57,7 @@ const MainLayout: FC = ({children}) => {
         </MainLayoutRightSide>
       </MainLayoutRow>
       <Footer/>
+      <MainAlert/>
     </MainLayoutWrapper>
   )
 }

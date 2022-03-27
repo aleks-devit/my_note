@@ -3,6 +3,7 @@ import {NodeTextWrap} from "../styles";
 import {Tooltip} from "@mui/material";
 import {useMutation} from "@apollo/client";
 import {UPDATE_DOCUMENT_TITLE, UPDATE_FOLDER_TITLE} from "./queries";
+import useAlert from "../../../hooks/useAlert";
 
 interface NodeTextProps {
   title: string;
@@ -17,15 +18,20 @@ const NodeText: FC<NodeTextProps> = ({title, rename, onRename, isFolder, id}) =>
   const [name, setName] = React.useState(title);
   const [updateDocumentTitle] = useMutation(UPDATE_DOCUMENT_TITLE);
   const [updateFolderTitle] = useMutation(UPDATE_FOLDER_TITLE);
-
+  const callAlert = useAlert();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleBlur = () => {
-    onRename(false);
-    if (isFolder) updateFolderTitle({variables: {_id: id, title: name}})
-    if (!isFolder) updateDocumentTitle({variables: {_id: id, title: name}})
+  const handleBlur = async () => {
+    try {
+      onRename(false);
+      if (isFolder) await updateFolderTitle({variables: {_id: id, title: name}})
+      if (!isFolder) await updateDocumentTitle({variables: {_id: id, title: name}})
+      callAlert( 'File name edited!', 'success');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

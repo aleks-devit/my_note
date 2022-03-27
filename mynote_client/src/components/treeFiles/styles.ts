@@ -15,6 +15,10 @@ export const NodeTextWrap = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 0 0 86%;
+  
+  input {
+    max-width: 100%;
+  }
 `
 
 export const NodeItem = styled.div`

@@ -29,8 +29,8 @@ const DesktopHeader: FC<HeaderProps> = ({pages}) => {
         <Image src='/sun.svg' width={48} height={48}/>
       </Typography>
 
-      <Grid container>
-        <Grid item xs={6}>
+      <Grid container sx={{justifyContent: {xs: 'flex-end', sm: 'flex-start'}}}>
+        <Grid item xs={6} sx={{display: {xs: 'none', sm: 'flex'}}}>
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
             {pages.map((page) => (
               <Button
@@ -52,7 +52,7 @@ const DesktopHeader: FC<HeaderProps> = ({pages}) => {
             />
           </Box>
         </Grid>
-       <Grid  item xs={6}>
+       <Grid  item xs={12} sm={6}>
          <Grid
            height='100%'
            alignItems="center"

@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import {HeaderProps} from "./Header";
 import FileMenu from "./menus/FileMenu";
+import LayoutViewSwitcher from "../items/LayoutViewSwitcher";
+import {Grid} from "@mui/material";
 
 const DesktopHeader: FC<HeaderProps> = ({pages}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -27,27 +29,41 @@ const DesktopHeader: FC<HeaderProps> = ({pages}) => {
         <Image src='/sun.svg' width={48} height={48}/>
       </Typography>
 
+      <Grid container>
+        <Grid item xs={6}>
+          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+            {pages.map((page) => (
+              <Button
+                key={page.name}
+                onClick={handleClick}
+                sx={{my: 2, color: 'white', display: 'block'}}
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
+                {page.name}
+              </Button>
+            ))}
 
-      <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-        {pages.map((page) => (
-          <Button
-            key={page.name}
-            onClick={handleClick}
-            sx={{my: 2, color: 'white', display: 'block'}}
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            {page.name}
-          </Button>
-        ))}
+            <FileMenu
+              handleClose={handleClose}
+              anchorEl={anchorEl}
+              open={open}
+            />
+          </Box>
+        </Grid>
+       <Grid  item xs={6}>
+         <Grid
+           height='100%'
+           alignItems="center"
+           container
+           direction="row-reverse"
+         >
+         <LayoutViewSwitcher/>
+         </Grid>
+       </Grid>
+      </Grid>
 
-        <FileMenu
-          handleClose={handleClose}
-          anchorEl={anchorEl}
-          open={open}
-        />
-      </Box>
     </>
   );
 };

@@ -14,6 +14,7 @@ import Footer from "./Footer"
 import {GET_TREE} from "./queries"
 import Preloader from "./items/Preloader";
 import {drawerWidth} from './items/LayoutContent'
+import LayoutViewSwitcher from "./items/LayoutViewSwitcher";
 
 
 const MainLayout: FC = ({children}) => {

@@ -1,8 +1,10 @@
 import styled from "styled-components"
 import {CustomScroll, TextCustomScroll} from "../../styles/styled-components/CustomScroll";
-import {Drawer} from "@mui/material";
+import {Drawer, Grid} from "@mui/material";
 import LayoutContent from "./items/LayoutContent";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
+import Button from "@mui/material/Button";
 
 export const MainLayoutWrapper = styled.div`
   height: 100vh;
@@ -33,6 +35,7 @@ export const MainLayoutRightSide = styled(LayoutContent)`
   flex: 1;
   position: relative;
   padding: 0;
+  overflow: hidden;
 `
 
 export const MainLayoutFooter = styled.div`
@@ -55,3 +58,23 @@ export const MainLayoutHideLeftSideBtn = styled(ArrowBackIcon)`
   transform: ${({open}: {open: boolean}) => open ? '' : 'rotate(180deg)'};
   transition: transform 0.3s ease-in-out;
   `
+
+export const LayoutViewSwitcherWrapper = styled(Grid)`
+  width: 167px;
+  `
+
+export const LayoutViewSwitcherBtn = styled(Button)`
+  min-width: auto;
+  border-color: #fff;
+  svg { 
+    fill: #fff;
+  }
+  
+  &:hover {
+    background-color: #fff;
+    svg { 
+      fill: #556CD6;
+    }
+  }
+  `
+

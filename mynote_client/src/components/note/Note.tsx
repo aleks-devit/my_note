@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 const Note = () => {
   const dispatch = useDispatch()
   const state = useSelector((state: any) => state.file);
+  const viewMode = useSelector((state: any) => state.app.viewMode);
   const [updateDocument] = useMutation(UPDATE_DOCUMENT);
   const router = useRouter()
   const {docId} = router.query
@@ -34,7 +35,7 @@ const Note = () => {
   }
 
   useEffect(() => {
-    switch (state.viewMode) {
+    switch (viewMode) {
       case 'only-text':
         setMode({
           textarea: 100,
@@ -54,7 +55,7 @@ const Note = () => {
         })
         break;
     }
-  }, [state.viewMode])
+  }, [viewMode])
 
   useEffect(() => {
     callGetDocumentContent()

@@ -104,7 +104,7 @@ input UpdateHobbyInput {
 
 input CreateFolderInput {
   title: String!
-  pathname: String
+  parentFolderId: String!
 }
 
 input UpdateFolderInput {
@@ -117,8 +117,7 @@ input UpdateFolderInput {
 
 input CreateDocumentInput {
   title: String!
-  content: String!
-  folderPathname: String
+  parentFolderId: String!
 }
 
 input UpdateDocumentInput {

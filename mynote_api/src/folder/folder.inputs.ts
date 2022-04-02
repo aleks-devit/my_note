@@ -6,8 +6,8 @@ export class CreateFolderInput {
   @Field(() => String)
   title: string
 
-  @Field(() => String, {nullable: true})
-  pathname?: string
+  @Field(() => String)
+  parentFolderId?: string
 }
 
 @InputType()

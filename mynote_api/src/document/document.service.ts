@@ -9,7 +9,7 @@ export class DocumentService {
   constructor(@InjectModel(Document.name) private  documentModel: Model<DocumentDocument>) {}
 
   create(payload: CreateDocumentInput) {
-    const createdDocument = new this.documentModel(payload)
+    const createdDocument = new this.documentModel({...payload, content: ''})
     return createdDocument.save()
   }
 

@@ -55,6 +55,7 @@ export const MainLayoutHideLeftSideBtn = styled(ArrowBackIcon)`
   border-radius: 50%;
   left: '5px';
   z-index: 1201;
+  cursor: pointer;
   transform: ${({open}: {open: boolean}) => open ? '' : 'rotate(180deg)'};
   transition: transform 0.3s ease-in-out;
   `

@@ -7,11 +7,7 @@ export class CreateDocumentInput {
   title: string
 
   @Field(() => String)
-  content: string
-
-  @Field(() => String, {nullable: true})
-  folderPathname?: string
-}
+  parentFolderId: string}
 
 @InputType()
 export class ListDocumentInput {

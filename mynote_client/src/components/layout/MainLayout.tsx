@@ -15,10 +15,13 @@ import {GET_TREE} from "./queries"
 import Preloader from "./items/Preloader";
 import {drawerWidth} from './items/LayoutContent'
 import MainAlert from "../alert/MainAlert";
+import {useDispatch, useSelector} from "react-redux";
+import {createFileTree} from "../../store/fileSlice/fileSlice";
 
 const MainLayout: FC = ({children}) => {
   const {loading, error, data} = useQuery(GET_TREE)
-  const [tree, setTree] = useState<any>([])
+  const dispatch = useDispatch()
+  const tree = useSelector((state: any) => state.file.tree)
   const [open, setOpen] = useState(true)
 
   const handleDrawerSwitch = () => {
@@ -26,16 +29,7 @@ const MainLayout: FC = ({children}) => {
   }
 
   useEffect(() => {
-    if (!!data) {
-      const parseData = data.folders.map((folders: any) => ({
-        ...folders,
-        parentFolderId: folders.parentFolderId ? folders.parentFolderId._id : null,
-        children: folders.children ? folders.children : []
-      }))
-      const parseResult = parseData.concat(data.documents)
-      const result = arrayToTree(parseResult, {parentProperty: 'parentFolderId', customID: '_id'})
-      setTree(result)
-    }
+    if (!!data) dispatch(createFileTree(data))
   }, [data])
 
 

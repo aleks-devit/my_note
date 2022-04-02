@@ -13,6 +13,7 @@ interface TreeProps {
 }
 
 const Tree: FC<TreeProps> = ({data}) => {
+
   return (
     <div>
       {data.map((item: DATAType) =>
